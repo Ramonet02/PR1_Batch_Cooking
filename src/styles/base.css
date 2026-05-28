@@ -1,0 +1,220 @@
+/* ───────────────────────────────────────────────────────────────
+   Base · Reset, body, typography utilities — v2 Mesa Mediterránea
+   ─────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Lock zoom on mobile devices for app-like behaviour */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  font-feature-settings: 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Prevent iOS pull-to-refresh bounce, allow internal scroll */
+  overscroll-behavior-y: contain;
+  min-height: 100dvh;
+  position: relative;
+}
+/* Procedural paper grain · fixed full-screen overlay at ~5% opacity */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16   0 0 0 0 0.14   0 0 0 0 0.10   0 0 0 0.9 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+body > * { position: relative; z-index: 1; }
+
+/* Disable text selection and tap highlights for app feel */
+body,
+button,
+.tap {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input,
+textarea,
+.selectable {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Remove default focus outlines, replace with custom */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--marina);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: var(--marina);
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-variation-settings: "opsz" 36, "SOFT" 60;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ── Typography utility classes ────────────────────────────── */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-size: var(--fs-display);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+.t-h1 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-variation-settings: "opsz" 96, "SOFT" 80;
+  font-size: var(--fs-h1);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+}
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-medium);
+  font-variation-settings: "opsz" 36, "SOFT" 60;
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+}
+.t-h3 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-medium);
+  font-variation-settings: "opsz" 24, "SOFT" 50;
+  font-size: var(--fs-h3);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+.t-body-lg { font: 400 var(--fs-body-lg)/1.55 var(--font-sans); }
+.t-body    { font: 400 var(--fs-body)/1.55    var(--font-sans); }
+.t-body-sm { font: 400 var(--fs-body-sm)/1.5  var(--font-sans); color: var(--ink-2); }
+.t-caption {
+  font: 500 var(--fs-caption)/1.2 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.t-label {
+  font: 600 var(--fs-label)/1 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.t-mono    { font-family: var(--font-mono); }
+.t-display-font { font-family: var(--font-display); }
+.t-muted   { color: var(--ink-2); }
+.t-faint   { color: var(--ink-3); }
+.t-primary { color: var(--marina); }
+.t-warn    { color: var(--warning); }
+.t-error   { color: var(--error); }
+.t-tomate  { color: var(--tomate); }
+
+/* Italic + tomate accent — para nombres propios y palabras especiales */
+em.accent,
+.t-accent {
+  font-style: italic;
+  font-weight: var(--fw-medium);
+  color: var(--tomate);
+}
+
+/* Numeric value with unit — bold number + light unit */
+.num {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.num b {
+  font: 700 1em/1 var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.num span {
+  font: 400 0.68em/1 var(--font-sans);
+  color: var(--ink-2);
+}
+
+/* ── Layout helpers ────────────────────────────────────────── */
+.stack { display: flex; flex-direction: column; gap: var(--space-4); }
+.stack-sm { display: flex; flex-direction: column; gap: var(--space-2); }
+.stack-lg { display: flex; flex-direction: column; gap: var(--space-6); }
+.row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+.row-tight { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.spacer { flex: 1; }
+.hidden { display: none !important; }
+
+/* ── Painted-edge utilities ────────────────────────────────── */
+.painted      { filter: url(#paint-edge); }
+.painted-soft { filter: url(#paint-edge-soft); }
+.painted-icon { filter: url(#paint-edge-icon); }
+
+/* Ink hairline border layered on top via ::after */
+.ink-edge { position: relative; }
+.ink-edge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--ink-line);
+  pointer-events: none;
+}

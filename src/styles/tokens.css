@@ -1,0 +1,172 @@
+/* ───────────────────────────────────────────────────────────────
+   Batch Cook · Design Tokens · v2 "Mesa Mediterránea"
+   Hand-painted gouache / tinned-fish editorial direction.
+   Cream paper, ultramarine, tomato, mustard, olive — sage as accent.
+   ─────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Lienzo · paper warmth ──────────────────────────────── */
+  --paper:        #F0E6CF;   /* cream background, slightly warm  */
+  --paper-deep:   #E6D9B8;   /* shadowed paper / section bands   */
+  --surface:      #FBF4DF;   /* lifted card surface              */
+  --surface-soft: #F6EDD2;   /* secondary card / chip neutral    */
+  --border-soft:  #E4D6B0;   /* very subtle hairline             */
+
+  /* Aliases for legacy class names that still reference --bg/--surface-alt/--border */
+  --bg:           var(--paper);
+  --surface-alt:  var(--surface-soft);
+  --border:       var(--border-soft);
+
+  /* ── Ink · warm darks (never pure black) ─────────────────── */
+  --ink:    #2A241B;
+  --ink-2:  #5E5240;
+  --ink-3:  #8E8267;
+
+  /* Aliases (legacy) */
+  --text:   var(--ink);
+  --text-2: var(--ink-2);
+  --text-3: var(--ink-3);
+  --text-on-primary: #FBF4DF;
+  --ink-line: rgba(42, 36, 27, 0.18);
+
+  /* ── Marina · primary anchor (ultramarine) ──────────────── */
+  --marina:      #3E5FA8;
+  --marina-deep: #2B4280;
+  --marina-soft: #C9D5EC;
+  --marina-ink:  #1B2C5E;
+
+  /* Aliases (legacy) — primary now points to marina */
+  --primary:       var(--marina);
+  --primary-dark:  var(--marina-deep);
+  --primary-light: var(--marina-soft);
+
+  /* ── Tomate · warmth + appetite ─────────────────────────── */
+  --tomate:      #D24A33;
+  --tomate-deep: #A8341F;
+  --tomate-soft: #F4D7CB;
+
+  /* ── Mostaza · grain + carbs ────────────────────────────── */
+  --mostaza:      #D7B23F;
+  --mostaza-deep: #A88726;
+  --mostaza-soft: #F2E3B3;
+
+  /* ── Oliva · verdura + huerta ───────────────────────────── */
+  --oliva:      #6F8B3D;
+  --oliva-deep: #4F6628;
+  --oliva-soft: #D7DFBE;
+
+  /* ── Sage · accent only (legacy primary) ────────────────── */
+  --sage:      #4A7856;
+  --sage-soft: #D3E0CF;
+
+  /* ── Salmón · pink, decorative ──────────────────────────── */
+  --salmon:      #E68077;
+  --salmon-soft: #F9D8D2;
+
+  /* Legacy accent caramel → tomate */
+  --accent:       var(--tomate);
+  --accent-light: var(--tomate-soft);
+
+  /* ── Sistema feedback ───────────────────────────────────── */
+  --success: #5E8B43;
+  --warning: #D7A02E;
+  --error:   #B33A2A;
+  --info:    var(--marina);
+
+  /* ── Nutritional categories (re-painted) ────────────────── */
+  --cat-protein: var(--tomate);
+  --cat-carb:    var(--mostaza);
+  --cat-veg:     var(--oliva);
+  --cat-mix:     #8A6BA5;        /* lavanda paper */
+
+  /* ── Cuisine types (re-painted) ─────────────────────────── */
+  --cui-medi: var(--marina);
+  --cui-it:   var(--tomate);
+  --cui-asia: #C26A2A;            /* burnt orange */
+  --cui-nac:  var(--oliva);
+  --cui-intl: var(--cat-mix);
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Georgia', serif;
+  --font-sans:    'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:    'DM Mono', ui-monospace, monospace;
+
+  --fs-display: 32px;
+  --fs-h1:      28px;
+  --fs-h2:      22px;
+  --fs-h3:      18px;
+  --fs-body-lg: 16px;
+  --fs-body:    14px;
+  --fs-body-sm: 13px;
+  --fs-caption: 11px;
+  --fs-label:   12px;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  --lh-tight:   1.2;
+  --lh-normal:  1.45;
+  --lh-relaxed: 1.6;
+
+  /* ── Spacing (4px base) ─────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --screen-padding: 24px;
+
+  /* ── Radii — asymmetric, hand-cut paper feel ────────────── */
+  --r-xs:    4px;
+  --r-sm:    8px;
+  --r-md:    12px;
+  --r-input: 12px 14px 11px 13px;
+  --r-lg:    16px;
+  --r-card:  16px 19px 15px 18px;       /* tl tr br bl */
+  --r-card-lg: 22px 18px 24px 20px;
+  --r-tile:  18px 14px 17px 15px;
+  --r-note:  16px 13px 17px 14px;
+  --r-xl:    24px;
+  --r-2xl:   32px;
+  --r-pill:  9999px;                     /* pills perfectly round */
+
+  /* ── Shadows · warm tinted (tinta marrón cálida) ────────── */
+  --shadow-xs:   0 1px 3px rgba(42, 36, 27, 0.05);
+  --shadow-sm:   0 2px 8px rgba(42, 36, 27, 0.06);
+  --shadow-card: 0 1px 0 rgba(42, 36, 27, 0.04), 0 2px 10px rgba(42, 36, 27, 0.07);
+  --shadow-lift: 0 1px 0 rgba(42, 36, 27, 0.04), 0 6px 18px rgba(42, 36, 27, 0.10);
+  --shadow-md:   0 4px 16px rgba(42, 36, 27, 0.08);
+  --shadow-fab:  0 6px 18px rgba(42, 36, 27, 0.20);
+  --shadow-lg:   0 8px 24px rgba(42, 36, 27, 0.12);
+  --shadow-nav:  0 -2px 14px rgba(42, 36, 27, 0.06);
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  --dur-fast:    150ms;
+  --dur-normal:  250ms;
+  --dur-slow:    400ms;
+  --dur-canvas:  800ms;
+
+  --ease-out:   cubic-bezier(0.0, 0.0, 0.2, 1.0);
+  --ease-in:    cubic-bezier(0.4, 0.0, 1.0, 1.0);
+  --ease-inout: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  --header-h:     56px;
+  --bottom-nav-h: 82px;   /* 68px bnav + ~14px gesture bar */
+  --safe-top:     env(safe-area-inset-top, 0px);
+  --safe-bottom:  env(safe-area-inset-bottom, 0px);
+
+  /* ── Pastel decoration colors (Home hero blobs) ─────────── */
+  --pastel-blush:  var(--salmon-soft);
+  --pastel-peach:  var(--mostaza-soft);
+  --pastel-sage:   var(--oliva-soft);
+  --pastel-lilac:  var(--marina-soft);
+}

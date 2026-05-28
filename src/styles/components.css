@@ -1,0 +1,928 @@
+/* ───────────────────────────────────────────────────────────────
+   Components · v2 Mesa Mediterránea
+   Buttons, chips, cards, inputs, day-bar, bottom-nav — all repainted.
+   Painted edges via filter: url(#paint-edge). Asymmetric radii on cards.
+   ─────────────────────────────────────────────────────────────── */
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 13px 22px;
+  border-radius: var(--r-pill);
+  font: var(--fw-semibold) 15px/1 var(--font-sans);
+  letter-spacing: 0.005em;
+  color: var(--ink);
+  background: var(--surface-soft);
+  border: 0;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+  filter: url(#paint-edge);
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--marina);
+  color: #FBF4DF;
+  box-shadow: 0 4px 12px rgba(62, 95, 168, 0.28);
+}
+.btn-primary:hover { background: var(--marina-deep); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--marina);
+  box-shadow: inset 0 0 0 1.5px var(--marina);
+}
+.btn-secondary:hover { background: var(--marina-soft); }
+
+.btn-tomate {
+  background: var(--tomate);
+  color: #FBF4DF;
+  box-shadow: 0 4px 12px rgba(210, 74, 51, 0.28);
+}
+.btn-tomate:hover { background: var(--tomate-deep); }
+
+.btn-destructive {
+  background: var(--tomate-soft);
+  color: var(--tomate-deep);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-2);
+  filter: none;
+}
+.btn-ghost:hover { background: var(--surface-soft); }
+
+.btn-sm { padding: 10px 16px; font-size: 13px; }
+.btn-block { width: 100%; }
+.btn-disabled { opacity: 0.4; pointer-events: none; }
+
+.btn-success {
+  background: var(--success) !important;
+  color: #FBF4DF !important;
+}
+
+/* Floating action button — 60px Marina circle */
+.fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--marina);
+  color: #FBF4DF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-fab);
+  border: 0;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  filter: url(#paint-edge);
+}
+.fab-tomate { background: var(--tomate); }
+
+/* ── Chips ──────────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: var(--r-pill);
+  font: 600 12px/1 var(--font-sans);
+  letter-spacing: 0.03em;
+  background: var(--surface-soft);
+  color: var(--ink-2);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out);
+  filter: url(#paint-edge);
+}
+.chip-uc { text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; }
+.chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.9;
+}
+
+.chip-active   { background: var(--marina);      color: #FBF4DF; }
+.chip-outline {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--border-soft);
+}
+.chip-outline.chip-active {
+  background: var(--ink);
+  color: #FBF4DF;
+  box-shadow: none;
+}
+
+/* Category chips · solid */
+.chip-protein  { background: var(--cat-protein); color: #FBF4DF; }
+.chip-carb     { background: var(--cat-carb);    color: var(--ink); }
+.chip-veg      { background: var(--cat-veg);     color: #FBF4DF; }
+.chip-mix      { background: var(--cat-mix);     color: #FBF4DF; }
+
+/* Cuisine chips · solid */
+.chip-medi { background: var(--cui-medi); color: #FBF4DF; }
+.chip-it   { background: var(--cui-it);   color: #FBF4DF; }
+.chip-asia { background: var(--cui-asia); color: #FBF4DF; }
+.chip-nac  { background: var(--cui-nac);  color: #FBF4DF; }
+.chip-intl { background: var(--cui-intl); color: #FBF4DF; }
+
+/* Soft / paper-tinted chips — for meta and state */
+.chip-soft         { padding: 6px 11px; font-size: 11px; }
+.chip-soft-marina  { background: var(--marina-soft);  color: var(--marina-ink); }
+.chip-soft-tomate  { background: var(--tomate-soft);  color: var(--tomate-deep); }
+.chip-soft-mostaza { background: var(--mostaza-soft); color: var(--mostaza-deep); }
+.chip-soft-oliva   { background: var(--oliva-soft);   color: var(--oliva-deep); }
+.chip-soft-sage    { background: var(--sage-soft);    color: var(--sage); }
+.chip-soft-days    { background: var(--surface-soft); color: var(--ink-2); }
+
+/* Legacy aliases for chips used by current screens */
+.chip-soft-protein { background: var(--tomate-soft);  color: var(--tomate-deep); }
+.chip-soft-carb    { background: var(--mostaza-soft); color: var(--mostaza-deep); }
+.chip-soft-veg     { background: var(--oliva-soft);   color: var(--oliva-deep); }
+.chip-soft-mix     { background: color-mix(in oklab, var(--cat-mix) 24%, var(--paper)); color: var(--cat-mix); }
+.chip-soft-medi    { background: var(--marina-soft);  color: var(--marina-ink); }
+.chip-soft-it      { background: var(--tomate-soft);  color: var(--tomate-deep); }
+.chip-soft-asia    { background: color-mix(in oklab, var(--cui-asia) 24%, var(--paper)); color: var(--cui-asia); }
+.chip-soft-nac     { background: var(--oliva-soft);   color: var(--oliva-deep); }
+.chip-soft-intl    { background: color-mix(in oklab, var(--cui-intl) 24%, var(--paper)); color: var(--cui-intl); }
+
+/* ── Inputs ─────────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--r-input);
+  background: var(--surface-soft);
+  border: 1.5px solid transparent;
+  font: 400 15px/1.2 var(--font-sans);
+  color: var(--ink);
+  outline: 0;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+  box-sizing: border-box;
+}
+.input::placeholder { color: var(--ink-3); }
+.input:focus,
+.input.is-focus {
+  border-color: var(--marina);
+  background: var(--surface);
+}
+
+.input-search {
+  padding-left: 44px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8267' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><path d='m20 20-3.5-3.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  background-size: 16px;
+}
+
+/* ── Cards ──────────────────────────────────────────────────── */
+.card {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--ink-line);
+  pointer-events: none;
+}
+.card-lifted { box-shadow: var(--shadow-lift); }
+
+/* ── Photo placeholders (illustration slots) ────────────────── */
+/* In v2 these are the .illus pattern — tonal background by category.
+   Empty state shows a wavy dashed border with a tiny caption. */
+.ph {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--r-tile);
+  background: var(--surface-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  line-height: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  color: var(--ink-3);
+}
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 200 200' preserveAspectRatio='none'><defs><filter id='w'><feTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='2' seed='4'/><feDisplacementMap in='SourceGraphic' scale='3.5'/></filter></defs><rect x='4' y='4' width='192' height='192' rx='14' ry='14' fill='none' stroke='%238E8267' stroke-width='1.6' stroke-dasharray='5,5' stroke-linecap='round' filter='url(%23w)' opacity='.55'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+}
+.ph > * { position: relative; z-index: 1; }
+.ph-tone-protein,
+.ph-tone-tomate { background: var(--tomate-soft); }
+.ph-tone-carb,
+.ph-tone-mostaza { background: var(--mostaza-soft); }
+.ph-tone-veg,
+.ph-tone-oliva { background: var(--oliva-soft); }
+.ph-tone-mix,
+.ph-tone-lavanda { background: color-mix(in oklab, var(--cat-mix) 22%, var(--paper)); }
+.ph-tone-medi,
+.ph-tone-marina { background: var(--marina-soft); }
+.ph-tone-salmon { background: var(--salmon-soft); }
+.ph-tone-sage   { background: var(--sage-soft); }
+
+.ph-lg {
+  aspect-ratio: 16/10;
+  border-radius: var(--r-card-lg);
+  font-size: 56px;
+}
+
+/* ── Device frame ──────────────────────────────────────────── */
+.device {
+  width: 100%;
+  max-width: 390px;
+  height: 100dvh;
+  max-height: 844px;
+  margin: 0 auto;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 480px) {
+  .device {
+    margin-top: 24px;
+    border-radius: 32px;
+    box-shadow: 0 10px 40px rgba(42, 36, 27, 0.18);
+  }
+}
+
+.device-statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px 4px;
+  padding-top: max(12px, var(--safe-top));
+  font: 600 13px/1 var(--font-sans);
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.device-statusbar .right {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+}
+
+.device-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 var(--screen-padding) var(--space-6);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  /* Decorative props use position:absolute relative to this container */
+  position: relative;
+}
+.device-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Decorative props ──────────────────────────────────────────
+   Background images from public/props/. Positioned absolutely
+   inside .device-scroll; content elements sit above thanks to
+   the z-index rule below. */
+.prop {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  opacity: 0.32;
+  filter: saturate(0.85);
+  height: auto;
+  max-width: 140px;
+}
+.prop-sm { max-width: 96px; }
+.prop-md { max-width: 140px; }
+.prop-lg { max-width: 200px; }
+
+/* Anything that isn't a prop should sit above the props layer */
+.device-scroll > :not(.prop) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── App header ────────────────────────────────────────────── */
+.app-header {
+  height: var(--header-h);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.app-header__brand {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-variation-settings: "opsz" 28, "SOFT" 60;
+  font-size: 22px;
+  letter-spacing: -0.012em;
+}
+.app-header__sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ── Bottom navigation ─────────────────────────────────────── */
+.bnav {
+  background: var(--surface);
+  box-shadow: var(--shadow-nav);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;            /* tabs fill the fixed bar height */
+  gap: 0;
+  padding: 0 6px;
+  flex-shrink: 0;
+  height: 68px;                    /* tall enough for bubble (44px) + gap + label */
+  border-radius: 24px 24px 0 0;
+  position: relative;
+  overflow: visible;
+}
+.bnav-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;         /* icon + label centrados verticalmente */
+  gap: 3px;
+  color: var(--ink-3);
+  font: 500 11px/1 var(--font-sans);
+  letter-spacing: 0.03em;
+  padding: 0 4px;
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--r-md);
+  z-index: 1;
+  transition: color var(--dur-normal) var(--ease-out),
+              transform 350ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow var(--dur-normal) var(--ease-out),
+              background-color var(--dur-normal) var(--ease-out);
+}
+/* No more spring pill pseudo — the active tab is its own card now */
+.bnav-tab::before { display: none; }
+
+.bnav-tab:active {
+  transform: scale(0.9);
+  transition-duration: 60ms;
+}
+.bnav-tab svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  position: relative;
+  z-index: 1;
+}
+.bnav-tab span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Active tab: marina circle, same height as other icons ──── */
+.bnav-tab.active {
+  color: var(--marina);
+  background: transparent;
+  border-radius: var(--r-md);
+  box-shadow: none;
+  transform: none;
+  justify-content: center;   /* burbuja + label centrados, igual que tabs inactivos */
+  padding: 0 8px;
+  z-index: 2;
+  animation: none;
+}
+/* Press: escalar solo la burbuja */
+.bnav-tab.active:active .bnav-bubble {
+  transform: scale(0.9);
+  transition: transform 60ms ease-out;
+}
+.bnav-tab.active span:not(.bnav-bubble) {
+  animation: bnav-label-in 200ms var(--ease-out) 60ms both;
+}
+
+/* Círculo en flujo normal — a la misma altura que los iconos inactivos */
+.bnav-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--marina);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(62, 95, 168, 0.28);
+  animation: bnav-bubble-rise 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.bnav-bubble svg {
+  width: 24px;
+  height: 24px;
+  stroke: #FBF4DF;    /* cream icon on the marina circle */
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes bnav-bubble-rise {
+  0%   { transform: scale(0.55); opacity: 0.1; }
+  65%  { transform: scale(1.12); }
+  100% { transform: scale(1);    opacity: 1;   }
+}
+@keyframes bnav-icon-pop {
+  /* kept for other uses */
+  0%   { transform: scale(0.85) translateY(2px); }
+  55%  { transform: scale(1.2)  translateY(-3px); }
+  80%  { transform: scale(0.97) translateY(0); }
+  100% { transform: scale(1)    translateY(0); }
+}
+@keyframes bnav-label-in {
+  from { opacity: 0.4; transform: translateY(2px); }
+  to   { opacity: 1;   transform: translateY(0); }
+}
+
+/* ── Screen slide transitions ───────────────────────────────── */
+@keyframes screen-from-right {
+  from { transform: translateX(36px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes screen-from-left {
+  from { transform: translateX(-36px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+.screen-slide-right {
+  animation: screen-from-right 270ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.screen-slide-left {
+  animation: screen-from-left 270ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Android gesture bar */
+.gesture-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0 max(8px, var(--safe-bottom));
+  background: var(--surface);
+}
+.gesture-bar::after {
+  content: '';
+  width: 134px;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: rgba(42, 36, 27, 0.18);
+}
+
+/* ── Day selector bar (L M X J V) ───────────────────────────── */
+.weekbar {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: space-between;
+  padding: var(--space-2) 0 var(--space-5);
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  cursor: pointer;
+}
+.day-pill {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill);
+  background: var(--surface-soft);
+  color: var(--ink-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 14px/1 var(--font-sans);
+  position: relative;
+  overflow: visible;
+  filter: url(#paint-edge);
+  transition: background-color var(--dur-normal) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-normal) var(--ease-out);
+}
+/* Food emoji badge — bottom-right corner */
+.day-food {
+  position: absolute;
+  bottom: -7px;
+  right: -7px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(42, 36, 27, 0.14);
+  z-index: 2;
+  filter: none;
+}
+.day-food iconify-icon { display: block; }
+.day.done .day-pill::after {
+  content: '✓';
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--success);
+  color: #FBF4DF;
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  line-height: 18px;
+  text-align: center;
+  z-index: 3;
+  box-shadow: 0 1px 4px rgba(42, 36, 27, 0.18);
+  filter: none;
+  animation: badge-pop 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes badge-pop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+/* Status dot */
+.day-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+}
+.day.done .day-status    { background: var(--success); }
+.day.pending .day-status { background: var(--ink-3); }
+/* Category tints on non-active days with a tupper */
+.day-cat-protein:not(.active) .day-pill { background: color-mix(in oklab, var(--cat-protein) 22%, var(--surface-soft)); }
+.day-cat-carb:not(.active) .day-pill    { background: color-mix(in oklab, var(--cat-carb)    25%, var(--surface-soft)); }
+.day-cat-veg:not(.active) .day-pill     { background: color-mix(in oklab, var(--cat-veg)     22%, var(--surface-soft)); }
+.day-cat-mix:not(.active) .day-pill     { background: color-mix(in oklab, var(--cat-mix)     20%, var(--surface-soft)); }
+/* Done ring on non-active prepared days */
+.day.done:not(.active) .day-pill {
+  box-shadow: 0 0 0 2px var(--success), 0 3px 8px rgba(94, 139, 67, 0.20);
+}
+/* Active state */
+.day.active .day-pill {
+  background: var(--marina);
+  color: #FBF4DF;
+  box-shadow: 0 4px 12px rgba(62, 95, 168, 0.30);
+  animation: day-select 280ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes day-select {
+  0%   { transform: scale(0.92); }
+  60%  { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+.day.active .day-food { background: var(--marina-soft); }
+
+/* ── Sub-tabs (Recetario / Nevera / Compra) ─────────────────── */
+.subtabs {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.subtab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  font: 600 var(--fs-body)/1 var(--font-sans);
+  color: var(--ink-3);
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.subtab.active { color: var(--marina); }
+.subtab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: var(--marina);
+  border-radius: var(--r-pill);
+}
+
+/* ── Section titles ─────────────────────────────────────────── */
+.section-title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-medium);
+  font-variation-settings: "opsz" 28, "SOFT" 60;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+  margin: 0;
+}
+.section-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+/* ── Banner / Status row ────────────────────────────────────── */
+.banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  font: 500 13px/1.2 var(--font-sans);
+  filter: url(#paint-edge);
+}
+.banner .dot,
+.banner .glyph {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.banner-info,
+.banner-ok {
+  background: var(--oliva-soft);
+  color: var(--oliva-deep);
+}
+.banner-warn {
+  background: var(--mostaza-soft);
+  color: var(--mostaza-deep);
+}
+.banner-tomate {
+  background: var(--tomate-soft);
+  color: var(--tomate-deep);
+}
+.banner-marina {
+  background: var(--marina-soft);
+  color: var(--marina-ink);
+}
+.banner .chev {
+  margin-left: auto;
+  opacity: 0.5;
+  background: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+}
+
+/* ── Note · handwritten-style ──────────────────────────────── */
+.note {
+  background: var(--surface);
+  border-radius: var(--r-note);
+  padding: 14px 18px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 18, "SOFT" 90;
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  box-shadow: var(--shadow-card);
+}
+.note::before {
+  content: "“";
+  display: inline-block;
+  margin-right: 4px;
+  color: var(--marina);
+  font-size: 24px;
+  line-height: 0;
+  vertical-align: -8px;
+  font-weight: 500;
+}
+.note::after {
+  content: "”";
+  color: var(--marina);
+  font-size: 24px;
+  line-height: 0;
+  vertical-align: -8px;
+  margin-left: 2px;
+  font-weight: 500;
+}
+
+/* ── Iconify · global icon hygiene ─────────────────────────── */
+/* Streamline emojis often have transparent backgrounds and look great
+   on the tonal slots. We constrain rendering so they sit on baseline
+   and stay crisp inside flex containers. */
+iconify-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+/* The Iconify component renders an <svg> child once the icon loads.
+   This ensures it never overflows its declared width/height. */
+iconify-icon > svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+/* ── Pack PNG · iconos de comida propios ───────────────────────── */
+/* foodIcon() devuelve <img class="ico-food"> cuando el icono existe en el pack
+   local (/public/icons). Le damos el mismo comportamiento de caja que a los
+   iconos de iconify para que encaje en los mismos contenedores (slots, badges,
+   placeholders y el selector). */
+.ico-food {
+  object-fit: contain;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+img.ico-food { display: inline-block; }
+.day-food img.ico-food { display: block; }
+
+/* Emoji fallback (used when no streamline mapping is found) */
+.emoji-fallback {
+  font-family: 'DM Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+}
+
+/* ── Bottom sheet / modal ──────────────────────────────────── */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(42, 36, 27, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-normal) var(--ease-out),
+              background-color var(--dur-normal) var(--ease-out);
+}
+.sheet-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(42, 36, 27, 0.42);
+}
+.sheet {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  background: var(--surface);
+  border-radius: 22px 18px 0 0;
+  padding: 14px var(--screen-padding) calc(var(--space-5) + var(--safe-bottom));
+  box-shadow: 0 -8px 28px rgba(42, 36, 27, 0.18);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity var(--dur-normal) var(--ease-out);
+  max-height: 85vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.sheet::-webkit-scrollbar { display: none; }
+.sheet-backdrop.open .sheet {
+  transform: translateY(0);
+  opacity: 1;
+}
+.sheet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--ink-line);
+  pointer-events: none;
+}
+.sheet-handle {
+  display: block;
+  width: 44px;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--border-soft);
+  margin: 0 auto 12px;
+}
+.sheet-head {
+  margin-bottom: var(--space-4);
+}
+.sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.sheet-foot {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.sheet-foot .btn-ghost { flex: 1; }
+.sheet-foot .btn-primary,
+.sheet-foot .btn-tomate { flex: 2; }
+
+/* Sheet — action rows (used by Edit-day sheet) */
+.sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.sheet-action {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  background: var(--surface-soft);
+  border: 0;
+  border-radius: var(--r-tile);
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+  font: inherit;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+.sheet-action:hover { background: var(--marina-soft); }
+.sheet-action:active { transform: scale(0.99); }
+.sheet-action .ico {
+  font-size: 22px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border-radius: var(--r-tile);
+  filter: url(#paint-edge);
+}
+.sheet-action .meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.sheet-action .meta b {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body);
+}
+.sheet-action .meta span {
+  font-size: var(--fs-body-sm);
+  color: var(--ink-2);
+}
+.sheet-action .chev {
+  font-size: 18px;
+  font-weight: var(--fw-semibold);
+  color: var(--ink-3);
+}
+.sheet-action-danger:hover { background: var(--tomate-soft); }
+.sheet-action-danger:hover .meta b { color: var(--tomate-deep); }
+.sheet-action-danger:hover .chev { color: var(--tomate-deep); }
+
+/* Sheet body wrapping a form */
+.sheet-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Smaller emoji grid (used inside sheet) */
+.emoji-grid.emoji-grid-sm {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* ── Add link (+ text) ──────────────────────────────────────── */
+.add-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 4px;
+  color: var(--marina);
+  font: var(--fw-semibold) var(--fs-body)/1 var(--font-sans);
+  cursor: pointer;
+  background: transparent;
+}
+.add-link::before { content: '+'; font-size: 18px; line-height: 0; }
