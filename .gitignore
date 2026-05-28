@@ -1,13 +1,24 @@
 # Dependencies
 node_modules/
 
-# Build output
+# Build output (regenerable: npm run build)
 dist/
 .vite/
+www/
 
-# Native projects (regenerable with npx cap add)
-android/
+# iOS native project (we don't ship iOS)
 ios/
+
+# Android — keep the project itself, ignore only build artifacts and
+# machine-specific config so the entrega cumple el enunciado UOC.
+android/.gradle/
+android/.idea/
+android/build/
+android/app/build/
+android/captures/
+android/local.properties
+android/app/release/
+android/app/debug/
 
 # Logs and environment
 *.log
@@ -28,5 +39,3 @@ desktop.ini
 *.html
 !index.html
 *_files/
-
-# Memory and design docs are kept (not ignored)
